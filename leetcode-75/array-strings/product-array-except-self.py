@@ -15,19 +15,38 @@ Input: nums = [-1,1,0,-3,3]
 Output: [0,0,9,0,0]
 """
 
-# O(n*2) solutionclass Solution(object):
-def productExceptSelf(self, nums):
+# O(n*2) solution
+class Solution(object):
+    def productExceptSelf(self, nums):
 
-        without_n = []
-        result = 1
-        final_result = []
-
-        for i in range(len(nums)):
-            without_n = nums[:i] + nums[i+ 1:]
+            without_n = []
             result = 1
+            final_result = []
 
-            for j in without_n:
-                result *= j
-            final_result.append(result)
-                
-        return final_result    
+            for i in range(len(nums)):
+                without_n = nums[:i] + nums[i+ 1:]
+                result = 1
+
+                for j in without_n:
+                    result *= j
+                final_result.append(result)
+                    
+            return final_result    
+    
+# O(n) solution --expected soluiton
+class Solution(object):
+    def productExceptSelf(self, nums):
+
+        ans = [1] * len(nums)
+
+        prefix = 1                     # first left div
+        for i in range(len(nums)):
+            ans[i] = prefix
+            prefix *= nums[i]
+
+        suffix = 1                     # last right div
+        for i in range(len(nums)-1, -1 ,-1): 
+            ans[i] *= suffix 
+            suffix *= nums[i]
+
+        return ans       
