@@ -13,3 +13,14 @@ Example 2:
 Input: arr = [1,2]
 Output: false
 """
+class Solution(object):
+    def Uniqueoccurrences(self, arr):
+        count_map = {}
+        for num in arr:
+            count_map[num] = count_map.get(num, 0) + 1
+        occurrrences = set()
+        for count in count_map.values():
+            if count in occurrrences:
+                return False
+            occurrrences.add(count)
+        return True
