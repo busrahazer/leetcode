@@ -12,7 +12,6 @@ Note:
 The input will be generated such that the operation is always possible.
 It can be shown that the resulting string will always be unique.
  
-
 Example 1:
 
 Input: s = "leet**cod*e"
@@ -28,3 +27,15 @@ Input: s = "erase*****"
 Output: ""
 Explanation: The entire string is removed, so we return an empty string.
 """
+
+class Solution(object):
+    def removeStars(self, s):
+        
+        stack = []
+        for ch in s:
+            if ch == "*":
+                stack.pop()
+            else:
+                stack.append(ch)
+
+        return "".join(stack)   
